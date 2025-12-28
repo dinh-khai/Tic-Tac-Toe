@@ -1,10 +1,8 @@
 package src;
 
 public class Board {
-
-	private char[][] b = new char[3][3];
-	private char[][] board = null;
-	private int size = 3;
+	private char[][] board;
+	private int size = Constant.SMALL_SIZE;
 
 	public Board(int size) {
 		this.size = size;
