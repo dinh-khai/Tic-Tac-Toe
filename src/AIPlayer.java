@@ -114,18 +114,26 @@ public class AIPlayer {
 	// HARD MODE → MINIMAX
 	// -------------------------
 	private int[] minimaxMove(Board board) {
+		// điểm cao nhất mà AI tìm được
 		int bestScore = Integer.MIN_VALUE;
+		// tọa độ nước đi tốt nhất
 		int[] bestMove = { -1, -1 };
 
 		char[][] b = board.get();
 
+		// duyệt qua tất cả ô trống còn lại
 		for (int r = 0; r < boardSize; r++)
 			for (int c = 0; c < boardSize; c++)
 				if (b[r][c] == ' ') {
+					// giả lập nước đi của AI
 					b[r][c] = ai;
+  		            // gọi minimax để đánh giá toàn game sau nước đi này (kiểm tra xem đi nước này thì bên nào lợi hơn)	
 					int score = minimax(board, 0, false, Integer.MIN_VALUE, Integer.MAX_VALUE);
 					b[r][c] = ' ';
 
+					// trường hợp nước đi này tốt hơn thì chọn nước này
+					// cập nhật lại điểm và tọa độ của nước đi tốt nhất
+					// tiếp tục check cho đến khi tìm được nước đi tốt nhất trong tất cả những nước trống còn lại
 					if (score > bestScore) {
 						bestScore = score;
 						bestMove[0] = r;
@@ -137,7 +145,8 @@ public class AIPlayer {
 	}
 
 	private int minimax(Board board, int depth, boolean maximize, int alpha, int beta) {
-
+		// trường hợp nước đi này AI thắng thì trả về số điểm
+		// đây là điều kiện dừng đệ quy
 		if (board.hasWon(ai))
 			return 100 - depth;
 		if (board.hasWon(human))
@@ -147,17 +156,23 @@ public class AIPlayer {
 
 		char[][] b = board.get();
 
+		// trường hợp là AI đi
 		if (maximize) {
 			int best = Integer.MIN_VALUE;
 
+			// duyệt qua tất cả ô trống còn lại
 			for (int r = 0; r < boardSize; r++)
 				for (int c = 0; c < boardSize; c++)
 					if (b[r][c] == ' ') {
+						// giả định AI đi nước này
 						b[r][c] = ai;
 						int val = minimax(board, depth + 1, false, alpha, beta);
+						// trả lại giá trị cho board
 						b[r][c] = ' ';
 
+						// best ????
 						best = Math.max(best, val);
+						// alpha ????
 						alpha = Math.max(alpha, best);
 						if (beta <= alpha)
 							return best;

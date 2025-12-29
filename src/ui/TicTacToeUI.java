@@ -10,7 +10,7 @@ import src.Constant;
 public class TicTacToeUI extends JFrame {
 	CardLayout cardLayout = new CardLayout();
     JPanel mainPanel = new JPanel(cardLayout);
-    int boardSize = 0;
+    int boardSize = Constant.SMALL_SIZE;
     int level = Constant.HARD_LEVEL;
     private final String LEVEL_PANEL = "LEVEL";
     private final String SIZE_PANEL = "SIZE";

@@ -33,55 +33,23 @@ public class Board {
 	}
 
 	public boolean hasWon(char p) {
-		boolean hasWon = true;
-		// rows + cols
+		// kiểm tra theo hàng và cột
 		for (int i = 0; i < size; i++) {
-			hasWon = true;
-			for (int j = 0; j < size; j++) {
-				if (board[i][j] != p) {
-					hasWon = false;
-					break;
-				}
-			}
-
-			if (hasWon) {
-				return hasWon;
-			}
-
-			hasWon = true;
-			for (int j = 0; j < size; j++) {
-				if (board[j][i] != p) {
-					hasWon = false;
-					break;
-				}
-			}
-
-			if (hasWon) {
-				return hasWon;
-			}
-		}
-
-		// diagonals
-		hasWon = true;
-		for (int i = 0; i < size; i++) {
-			if (board[i][i] != p) {
-				hasWon = false;
-				break;
-			}
-		}
-
-		if (hasWon) {
-			return hasWon;
-		}
-
-		hasWon = true;
-		for (int i = 0; i < size; i++) {
-			if (board[i][size - 1 - i] != p) {
-				hasWon = false;
-				break;
-			}
-		}
-
-		return hasWon;
+	        boolean row = true, col = true;
+	        for (int j = 0; j < size; j++) {
+	            row &= board[i][j] == p;
+	            col &= board[j][i] == p;
+	        }
+	        if (row || col) return true;
+	    }
+		
+		// kiểm tra đường chéo
+		boolean diag1 = true, diag2 = true;
+	    for (int i = 0; i < size; i++) {
+	        diag1 &= board[i][i] == p;
+	        diag2 &= board[i][size - 1 - i] == p;
+	    }
+		
+		return diag1 || diag2;
 	}
 }

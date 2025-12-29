@@ -14,19 +14,6 @@ public class LevelPanel extends JPanel {
 	private TicTacToeUI ui;
 	public LevelPanel(TicTacToeUI ui) {
 		this.ui = ui;
-//        setLayout(new GridLayout(3, 1, 10, 10));
-//
-//        JButton easy = new JButton(Constant.EASY_LEVEL_LABEL);
-//        JButton medium = new JButton(Constant.MEDIUM_LEVEL_LABEL);
-//        JButton hard = new JButton(Constant.HARD_LEVEL_LABEL);
-//
-//        add(easy);
-//        add(medium);
-//        add(hard);
-//
-//        easy.addActionListener(e -> chooseLevel(Constant.EASY_LEVEL));
-//        medium.addActionListener(e -> chooseLevel(Constant.MEDIUM_LEVEL));
-//        hard.addActionListener(e -> chooseLevel(Constant.HARD_LEVEL));
         
         setLayout(null);
         setBackground(new Color(48, 63, 159));
